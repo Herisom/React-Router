@@ -1,25 +1,61 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Link,
+  useParams
+} from 'react-router-dom';
 
+function Home() {
+  return <h1>Strona główna</h1>;
+}
+ 
+function About() {
+  return <h1>O nas</h1>;
+}
+ 
+function Contact() {
+  return <h1>Kontakt</h1>;
+}
+ 
+const User = () => {
+  const { name } = useParams();
+  return <h1>Witaj, {name}!</h1>;
+}
+ 
+function NotFound() {
+  return <h1>404 – Nie znaleziono strony</h1>;
+}
+ 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <div>
+        <nav>
+          <ul>
+            <li>
+              <Link to="/">Strona główna</Link> | <Link to="/user/Janek">Witaj Janek!</Link> | <Link to="/user/Anna">Witaj Anna!</Link>
+            </li>
+            <li>
+              <Link to="/about">O nas</Link>
+            </li>
+            <li>
+              <Link to="/contact">Kontakt</Link>
+            </li>
+          </ul>
+        </nav>
+ 
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/user/:name" element={<User />} />
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      </div>
+    </Router>
   );
 }
-
+ 
 export default App;
