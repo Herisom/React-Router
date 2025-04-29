@@ -35,7 +35,7 @@ function App() {
         <nav>
           <ul>
             <li>
-              <Link to="/">Strona główna</Link> | <Link to="/user/Janek">Witaj Janek!</Link> | <Link to="/user/Anna">Witaj Anna!</Link>
+              <Link to="/">Strona główna</Link>
             </li>
             <li>
               <Link to="/about">O nas</Link>
